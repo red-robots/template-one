@@ -1,0 +1,79 @@
+.banner-wrapper {
+	position: relative;
+	@media screen and (min-width: $tabwidth) {
+		min-height: 500px;
+	}
+}
+.banner-image {
+	width: 100%;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+.banner-caption {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	color: #FFF;
+	.wrapper {
+		height: 100%;
+	}
+	.inside {
+		width: 55%;
+		float: left;
+		position: relative;
+		top: 30%;
+		transform: translateY(-30%);
+	}
+	.title {
+		display: block;
+		margin: 0 0 40px;
+		font-size: 30px;
+		font-weight: 700;
+		line-height: 1.2;
+		width: 100%;
+		position: relative;
+		@media screen and (min-width: $tabwidth) {
+			font-size: 40px;
+		}
+		&:after {
+			content: '';
+			display: block;
+			width: 50px;
+			height: 2px;
+			background: #FFF;
+			position: relative;
+			top: 15px;
+		}
+	}
+	.caption {
+		width: 100%;
+		font-size: 16px;
+    	font-weight: 400;
+		@media screen and (min-width: $tabwidth) {
+			width: 80%;
+		}
+	}
+	.button {
+		margin-top: 15px;
+		a {
+			display: inline-block;
+			padding: 10px 20px;
+			color: $color-red;
+			text-decoration: none;
+			background: #FFF;
+			text-transform: uppercase;
+			font-weight: 700;
+			font-size: 18px;
+			@include transition(all ease-out .3s);
+			&:hover {
+				background: $color-red;
+				color: #FFF;
+			}
+		}
+	}
+}

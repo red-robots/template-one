@@ -1,0 +1,114 @@
+.main-navigation {
+	width: 100%;
+	position: absolute;
+	@media screen and (min-width: $tabwidth) {
+		width: 70%;
+		position: relative;
+	}
+	ul {
+		list-style: none;
+		margin: 0 0;
+		padding: 0 0;
+		ul {
+			display: none;
+		}
+	}
+	a {
+		display: block;
+		text-decoration: none;
+		@include transition (all ease-out .3s);
+	}
+	.menu {
+		width: 100%;
+		position: relative;
+		@media screen and (min-width: $tabwidth) {
+			display: inline-block;
+			float: right;
+			width: auto;
+			right: -15px;
+		}
+	}
+	.menu > li {
+		display: block;
+		float: left;
+		width: 100%;
+		text-align: center;
+		@media screen and (min-width: $tabwidth) {
+			display: inline-block;
+			width: auto;
+		}
+	}
+	.menu > li > a {
+		color: #FFF;
+		text-transform: uppercase;
+		padding: 5px 15px;
+	}
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+	}
+}
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+	display: block;
+	// background-color: $color-green;
+	ul.sub-menu {
+		background-color: rgba(255,255,255,.1);
+	}
+	
+}
+
+
+@media screen and (min-width: $tabwidth) {
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		// display: block;
+	}
+}
+button.menu-toggle {
+	border: 0px;
+	text-shadow: none;
+	background-color: #ccc;
+	color: #fff;
+	box-shadow: none;
+	width: auto;
+	display: inline-block;
+	margin: 10px auto;
+	border-radius: 0;
+	text-transform: uppercase;
+	font: {
+		
+		weight :300;
+		size: 20px;
+	}
+	
+	@media screen and (min-width: $tabwidth) {
+		display: none;
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
