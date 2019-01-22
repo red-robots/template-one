@@ -11,6 +11,14 @@ function js_custom_init() {
             'plural'    => 'Services',
             'single'    => 'Service',
             'supports'  => array('title','editor','thumbnail')
+        ),
+        array(
+            'post_type' => 'testimonial',
+            'menu_name' => 'Testimonials',
+            'plural'    => 'Testimonials',
+            'single'    => 'Testimonial',
+            'menu_icon' => 'dashicons-format-quote',
+            'supports'  => array('title','editor','thumbnail')
         )
     );
     
@@ -71,36 +79,16 @@ function js_custom_init() {
 // Add new taxonomy, make it hierarchical (like categories)
 add_action( 'init', 'ii_custom_taxonomies', 0 );
 function ii_custom_taxonomies() {
-        $posts = array(
-            array(
-                'post_type' => 'position',
-                'menu_name' => 'Categories',
-                'plural'    => 'Assignment Categories',
-                'single'    => 'Category',
-                'taxonomy'  => 'position_categories'
-            ),
-            array(
-                'post_type' => 'position',
-                'menu_name' => 'Focus Areas',
-                'plural'    => 'Focus Areas',
-                'single'    => 'Focus Area',
-                'taxonomy'  => 'focus_area'
-            ),
-            array(
-                'post_type' => 'position',
-                'menu_name' => 'Status',
-                'plural'    => 'Status',
-                'single'    => 'Status',
-                'taxonomy'  => 'status'
-            ),
-            array(
-                'post_type' => 'team',
-                'menu_name' => 'Team Type',
-                'plural'    => 'Team Type',
-                'single'    => 'Category',
-                'taxonomy'  => 'team_type'
-            ),
-        );
+    $posts = array();
+        // $posts = array(
+        //     array(
+        //         'post_type' => 'position',
+        //         'menu_name' => 'Categories',
+        //         'plural'    => 'Assignment Categories',
+        //         'single'    => 'Category',
+        //         'taxonomy'  => 'position_categories'
+        //     )
+        // );
     
     if($posts) {
         foreach($posts as $p) {
@@ -146,15 +134,9 @@ function set_custom_cpt_columns($columns) {
     $query = isset($wp_query->query) ? $wp_query->query : '';
     $post_type = ( isset($query['post_type']) ) ? $query['post_type'] : '';
     
-    if($post_type=='position') {
+    if($post_type=='services') {
         unset( $columns['date'] );
-        $columns['status'] = __( 'Assignment Status', 'acstarter' );
-        $columns['date'] = __( 'Date', 'acstarter' );
-    }
-    
-    if($post_type=='team') {
-        unset( $columns['date'] );
-        $columns['photo'] = __( 'Photo', 'acstarter' );
+        $columns['featured_image'] = __( 'Featured Image', 'acstarter' );
         $columns['date'] = __( 'Date', 'acstarter' );
     }
     
@@ -168,41 +150,18 @@ function custom_post_column( $column, $post_id ) {
     $query = isset($wp_query->query) ? $wp_query->query : '';
     $post_type = ( isset($query['post_type']) ) ? $query['post_type'] : '';
     
-    if($post_type=='position') {
-        switch ( $column ) {
-            case 'status' :
-                $terms = get_the_terms($post_id,'status');
-//                $status = get_field('assignment_status',$post_id);
-//                if($status) {
-//                    echo ucwords($status);
-//                }
-//                else {
-//                    echo 'N/A';
-//                }
-                
-                $status_info = '';
-                if($terms) {
-                    $i=1; foreach($terms as $ss) {
-                        $comma = ($i>1) ? ', ':'';
-                        $status_info .= $comma . $ss->name;
-                        $i++;
-                    }
-                }
-                echo ($status_info) ? $status_info : '--';
-                break;
-        }
-    }
     
-    if($post_type=='team') {
+    if($post_type=='services') {
         switch ( $column ) {
-            case 'photo' :
-                $img = get_field('team_individual_image',$post_id);
-                $img_src = ($img) ? $img['sizes']['thumbnail'] : '';
+            case 'featured_image' :
+                $post_thumbnail_id = get_post_thumbnail_id( $post_id ); 
+                $img = wp_get_attachment_image_src($post_thumbnail_id,'medium');
+                $img_src = ($img) ? $img[0] : '';
                 $the_photo = '<span class="tmphoto" style="display:inline-block;width:50px;height:50px;background:#e2e1e1;text-align:center;">';
                 if($img_src) {
                    $the_photo .= '<img src="'.$img_src.'" alt="" style="width:100%;height:auto" />';
                 } else {
-                    $the_photo .= '<i class="dashicons dashicons-businessman" style="font-size:33px;position:relative;top:8px;left:-6px;opacity:0.3;"></i>';
+                    $the_photo .= '<i class="dashicons dashicons-format-image" style="font-size:25px;position:relative;top:14px;left:-2px;opacity:0.3;"></i>';
                 }
                 $the_photo .= '</span>';
                 echo $the_photo;

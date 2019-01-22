@@ -23,7 +23,7 @@ body {
 	font-family: $font__main;
 	font-size: 14px;
 	line-height: 1.4;
-	color: #333;
+	color: $color-default-text;
 }
 .wrapper {
 	width: 100%;
@@ -93,8 +93,15 @@ body {
 	}
 }
 
+body.open-mobile-menu .logo {
+	position: fixed;
+	
+}
+
 .site-header {
 	background: $color-blue;
+	padding-top: 14px;
+    padding-bottom: 14px;
 	@media screen and (min-width: $tabwidth) {
 		padding-top: 30px;
 		padding-bottom: 30px;

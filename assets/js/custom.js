@@ -87,4 +87,11 @@ jQuery(document).ready(function ($) {
 	------------------------------------*/
 	new WOW().init();
 
+
+	$(document).on("click","#toggleMenu",function(){
+		$(this).toggleClass('open');
+		$('.mobile-navigation').toggleClass('open');
+		$('body').toggleClass('open-mobile-menu');
+	});
+
 });// END #####################################    END

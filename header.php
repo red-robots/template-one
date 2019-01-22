@@ -25,6 +25,11 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'acstarter' ); ?></a>
 
+	<span id="toggleMenu" class="burger"><i></i></span>
+	<div id="mobile-navigation" class="mobile-navigation" role="navigation">
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-mobile-menu','container_class'=>'mobile-main-nav' ) ); ?>
+	</div>
+
 	<header id="masthead" class="site-header clear" role="banner">
 		<div class="wrapper">
 			<?php if( get_custom_logo() ) { ?>
@@ -39,7 +44,6 @@
 
 
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span></span></button>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
 			</nav><!-- #site-navigation -->
 	</div><!-- wrapper -->
@@ -47,4 +51,4 @@
 	
 	<?php get_template_part("template-parts/banner"); ?>
 
-	<div id="content" class="site-content wrapper">
+	<div id="content" class="site-content">

@@ -1,6 +1,7 @@
 .banner-wrapper {
 	background: $color-blue;
 	position: relative;
+	min-height: 270px;
 	@media screen and (min-width: $tabwidth) {
 		min-height: 500px;
 	}
@@ -24,22 +25,30 @@
 		height: 100%;
 	}
 	.inside {
-		width: 55%;
+		width: 90%;
 		float: left;
 		position: relative;
-		top: 30%;
-		transform: translateY(-30%);
+		top: 51%;
+		transform: translateY(-51%);
+		@media screen and (min-width: $midwidth) {
+			width: 55%;
+			top: 30%;
+			transform: translateY(-30%);
+			left: 0;
+		}
 	}
 	.title {
 		display: block;
-		margin: 0 0 40px;
+		margin: 0 0 25px;
 		font-size: 30px;
 		font-weight: 700;
 		line-height: 1.2;
 		width: 100%;
 		position: relative;
+		font-size: 5vw;
 		@media screen and (min-width: $tabwidth) {
 			font-size: 40px;
+			margin: 0 0 40px;
 		}
 		&:after {
 			content: '';
@@ -48,15 +57,19 @@
 			height: 2px;
 			background: #FFF;
 			position: relative;
-			top: 15px;
+			top: 8px;
+			@media screen and (min-width: $tabwidth) {
+				top: 15px;
+			}
 		}
 	}
 	.caption {
 		width: 100%;
-		font-size: 16px;
+		font-size: 3vw;
     	font-weight: 400;
 		@media screen and (min-width: $tabwidth) {
 			width: 80%;
+			font-size: 16px;
 		}
 	}
 	.button {
@@ -78,3 +91,225 @@
 		}
 	}
 }
+
+.flex-container {
+	position: relative;
+	@media screen and (min-width: $tabwidth) {
+		@include flexbox();
+		@include flexbox-wrap(wrap);
+		@include flexbox-align-content(center);
+		@include flexbox-justify(left);
+	}
+}
+
+.section-title {
+	margin: 60px 0;
+	font-size: 30px;
+	font-weight: 700;
+	text-align: center;
+	position: relative;
+	color: $color-dark-grey;
+	span {
+		display: inline-block;
+		position: relative;
+	}
+	span:after {
+		content: '';
+		display: block;
+		width: 60px;
+		height: 1px;
+		background: $color-blue;
+		position: relative;
+		top: 14px;
+		margin: 0 auto;
+	}
+}
+
+.featured-items {
+	margin-top: 70px;
+	margin-bottom: 40px;
+	.row {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.column {
+		font-size: 14px;
+		margin-bottom: 40px;
+		@media screen and (min-width: $tabwidth) {
+			width: 50%;
+			float: left;
+		}
+		@media screen and (min-width: $midwidth) {
+			width: 25%;
+			float: left;
+		}
+	}
+	.inside {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.icon,
+	.desc-wrap {
+		text-align: center;
+	}
+	.icon {
+		margin-bottom: 15px;
+	}
+	.icon span {
+		display: inline-block;
+		background: #f2f2f2;
+		border-radius: 100%;
+		img {
+			margin: 20px;
+		}
+	}
+	.title {
+		color: $color-dark-grey;
+		font-size: 15px;
+		font-weight: 700;
+		margin: 0 0 10px;
+	}
+}
+
+.section-two {
+	position: relative;
+	.section2-image {
+		@media screen and (min-width: $tabwidth) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50%;
+			height: 100%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+	}
+	.section2-image img {
+		width: 100%;
+		height: 100%;
+		@media screen and (min-width: $tabwidth) {
+			display: none;
+		}
+	}
+	.title {
+		margin: 0 0 35px;
+		font-size: 25px;
+		font-weight: 700;
+		color: $color-dark-grey;
+		&:after {
+			content:"";
+			display: block;
+			width: 50px;
+			height: 2px;
+			background: $color-blue;
+			position: relative;
+			top: 20px;
+		}
+	}
+	.section2-description {
+		background: #ececed;
+		&.has-image {
+			@media screen and (min-width: $tabwidth) {
+				width: 50%;
+				float: right;
+			}
+		}
+	}
+	.textwrap {
+		width: 100%;
+		@media screen and (min-width: $midwidth) {
+			max-width: 580px;
+		}
+	}
+	.inner {
+		padding: 30px 30px;
+		@media screen and (min-width: $tabwidth) {
+			padding: 12% 30px;
+		}
+	}
+	.buttondiv a {
+		display: inline-block;
+		text-decoration: none;
+		color: #FFF;
+		background: #e94756;
+		padding: 10px 25px;
+		margin-top: 10px;
+		@include transition(all ease-out .3s);
+		&:hover {
+			transform: scale(1.1);
+			-moz-transform: scale(1.1);
+			-webkit-transform: scale(1.1);
+			-o-transform: scale(1.1);
+		}
+	}
+}
+.services-items {
+	.row {
+		margin-left: -6px;
+		margin-right: -6px;
+	}
+	.item {
+		display: block;
+		position: relative;
+		margin-bottom: 12px;
+		@media screen and (min-width: $tabwidth) {
+			width: 50%;
+			float: left;
+		}
+		@media screen and (min-width: $midwidth) {
+			width: 33.333%;
+			float: left;
+		}
+	}
+	.inside {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+	a {
+		display: block;
+		text-decoration: none;
+		color: $color-blue;
+		position: relative;
+		float: left;
+    	width: 100%;
+	}
+	span {
+		display: block;
+	}
+	.caption {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 5;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		background:rgba(215,215,215,.8);
+		visibility: hidden;
+		opacity: 0;
+		@include transition(all ease-out .3s);
+	}
+	.caption .name {
+		position: relative;
+		top: 48%;
+		transform: translateY(-48%);
+		font-weight: 500;
+		font-size: 25px;
+		transform: translate3d(0, 200%, 0);
+		@include transition(all ease-out .3s);
+	} 
+	img {
+		width: 100%;
+		height: auto;
+		float: left;
+	}
+	a:hover .caption {
+		visibility: visible;
+		opacity: 1;
+		.name {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+}
+
